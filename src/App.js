@@ -1,11 +1,15 @@
 import { useState, useEffect } from 'react';
 import Gallery from './Gallery'
-import logo from './logo.svg';
 import './App.css';
+import ButtonBar from './ButtonBar';
 
 function App() {
   let [artId, setArtId] = useState(12720)
   let [data, setData] = useState({})
+
+  const handleIterate = (e) => {
+    setArtId(artId + Number(e.target.value))
+  }
 
   useEffect(() => {
     document.title = 'Welcome to ArtWorld'
@@ -18,6 +22,7 @@ function App() {
   return (
     <div className="App">
       <Gallery objectImg={data.primaryImage} artist={data.artistDisplayName} title={data.title} />
+      <ButtonBar handleIterate={handleIterate}/>
     </div>
   );
 }
